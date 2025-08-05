@@ -5,6 +5,8 @@ import (
 	"net/http"
 	"sync"
 	"time"
+	"encoding/json"
+	"log"
 
 	"github.com/firemanm/LAB001/handlers"
 	"github.com/gorilla/mux"
@@ -38,6 +40,18 @@ func healthHandler(w http.ResponseWriter, r *http.Request) {
 	w.Write(jsonResp)
 	return
 	}
+
+func loggingMiddleware(next http.HandlerFunc) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		start := time.Now()
+		next(w, r)
+		elapsed := time.Since(start)
+		log.Printf("%s %s %v\n", r.Method, r.URL, elapsed)
+		fmt.Println(r.Method, r.URL, elapsed)
+
+	}
+
+}
 
 func main() {
 	//create new router object
