@@ -26,6 +26,19 @@ func homeHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintln(w, "All tasks completed")
 }
 
+func healthHandler(w http.ResponseWriter, r *http.Request) {
+	w.WriteHeader(http.StatusOK)
+	w.Header().Set("Content-Type", "application/json")
+	resp := make(map[string]string)
+	resp["message"] = "Status OK"
+	jsonResp, err := json.Marshal(resp)
+	if err != nil {
+		log.Fatalf("Error happened in JSON marshal. Err: %s", err)
+	}
+	w.Write(jsonResp)
+	return
+	}
+
 func main() {
 	//create new router object
 	r := mux.NewRouter()
@@ -36,6 +49,10 @@ func main() {
 
 	fmt.Println("Registering /users/ path handler")
 	handlers.GetUser(r)
+
+	fmt.Println("Registering /health path handler")
+	r.HandleFunc("/health", loggingMiddleware(healthHandler)).Methods("GET")
+
 
 	fmt.Println("Server is listening on port 8080")
 	http.ListenAndServe(":8080", r)
