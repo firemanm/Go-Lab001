@@ -23,5 +23,14 @@ spec:
       containers:
       - name: lab001v2
         image: firemanm/lab001:v2
-        ports:
-        - containerPort: 8080    
+        ports: 
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8080
+            httpHeaders:
+            - name: Status
+              value: Ok
+          initialDelaySeconds: 3
+          periodSeconds: 3
