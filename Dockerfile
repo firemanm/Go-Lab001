@@ -12,6 +12,11 @@ COPY . .
 RUN CGO_ENABLED=0 GOOS=linux go build -o main .
 
 FROM alpine:3.12
+# Install Bash and curl
+RUN apk update \
+ && apk add --no-cache curl bash \
+ && rm -rf /var/cache/apk/*
+
 WORKDIR /app
 COPY --from=builder /app/main .
 # Optional:
