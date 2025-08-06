@@ -1,0 +1,27 @@
+apiVersion: apps/v2
+kind: Deployment
+metadata:
+  name: firemanm-Deployment
+  labels:
+    app: firemanm-Deployment
+spec:
+  replicas: 4
+  minReadySeconds: 5
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      env: Lab001v2
+  template:
+    metadata:
+      labels:
+        env: Lab001v2
+    spec:
+      containers:
+      - name: Lab001v2
+        image: firemanm/lab001:v2
+        ports:
+        - containerPort: 8080    
