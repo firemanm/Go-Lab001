@@ -1,7 +1,7 @@
-apiVersion: apps/v2
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: firemanm-Deployment
+  name: firemanm-deployment
   labels:
     app: firemanm-Deployment
 spec:
@@ -14,14 +14,14 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      env: Lab001v2
+      env: lab001v2
   template:
     metadata:
       labels:
-        env: Lab001v2
+        env: lab001v2
     spec:
       containers:
-      - name: Lab001v2
+      - name: lab001v2
         image: firemanm/lab001:v2
         ports:
         - containerPort: 8080    
