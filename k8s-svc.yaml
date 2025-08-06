@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: lab001v2-svc
+  name: lab001v2-svc
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: lab001v2
+  type: ClusterIP
