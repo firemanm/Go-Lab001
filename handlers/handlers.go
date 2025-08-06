@@ -38,8 +38,6 @@ func loggingMiddleware(next http.HandlerFunc) http.HandlerFunc {
 		next(w, r)
 		elapsed := time.Since(start)
 		log.Printf("%s %s %v\n", r.Method, r.URL, elapsed)
-		fmt.Println(r.Method, r.URL, elapsed)
-
 	}
 
 }
