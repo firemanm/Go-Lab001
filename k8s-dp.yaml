@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: firemanm-deployment
   labels:
-    app: firemanm-Deployment
+    app: lab001v2
 spec:
   replicas: 4
   minReadySeconds: 5
@@ -14,11 +14,11 @@ spec:
     type: RollingUpdate
   selector:
     matchLabels:
-      env: lab001v2
+      app: lab001v2
   template:
     metadata:
       labels:
-        env: lab001v2
+        app: lab001v2
     spec:
       containers:
       - name: lab001v2
