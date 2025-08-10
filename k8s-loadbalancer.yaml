@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: lab001v2-lb
+  labels:
+    app: lab001v2-lb
+spec:
+  ports:
+  - port: 80
+    targetPort: 8080
+  selector:
+    app: lab001v2
+  type: LoadBalancer

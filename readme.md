@@ -24,14 +24,25 @@ kubectl get pod -o wide
 //apply config for ingress
 kubectl apply -f k8s-ingress.yaml
 kubectl get ingress -o wide
-
 kubectl describe ingress firemanm-ingress
 
-
-//etc
-kubectl get svc -A
-kubectl get pod -A
-
+//apply config for loadbalancer
+kubectl apply -f k8s-loadbalancer.yaml
 minikube tunnel&
 
+/get LB external IP - change it in command futher
+kubectl get svc -A
+curl http://10.102.128.79/health
+
+//kill LB
+kubectl delete -f k8s-loadbalancer.yaml
+Kill <tunnel pid>
+
+//etc
+kubectl get pod -A
+minikube addons list
+minikube addons enable ingress
+echo "$(minikube ip) arch.homework" | sudo tee -a /etc/hosts
+
+kubectl get pods -n ingress-nginx
 
