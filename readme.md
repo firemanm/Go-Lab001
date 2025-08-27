@@ -22,6 +22,7 @@ kubectl exec firemanm-deployment-55f84c6784-l2mqn -it -- curl http://lab001v2-sv
 kubectl get pod -o wide 
 
 //apply config for ingress
+minikube addons enable ingress
 kubectl apply -f k8s-ingress.yaml
 kubectl get ingress -o wide
 kubectl describe ingress firemanm-ingress
@@ -46,3 +47,4 @@ echo "$(minikube ip) arch.homework" | sudo tee -a /etc/hosts
 
 kubectl get pods -n ingress-nginx
 
+kubectl logs -f deployment/firemanm-deployment --all-containers=true --prefix --timestamps

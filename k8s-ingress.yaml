@@ -3,23 +3,23 @@ kind: Ingress
 metadata:
   name: firemanm-ingress
   annotations:
-     nginx.ingress.kubernetes.io/rewrite-target: /health
-     nginx.ingress.kubernetes.io/use-regex: "true"
+     nginx.ingress.kubernetes.io/rewrite-target: /$2
 spec:
   ingressClassName: nginx
   rules:
   - host: arch.homework
     http:
       paths:
-      - path: /otus(/|$)(.*)
+      - path: /otus/(.*)/(.*)
         pathType: ImplementationSpecific
         backend:
           service:
             name: lab001v2-svc
             port:
               number: 80
-      - path: /
-        pathType: Prefix
+
+      - path: /(.*)
+        pathType: ImplementationSpecific
         backend:
           service:
             name: lab001v2-svc
