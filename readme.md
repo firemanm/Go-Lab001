@@ -1,3 +1,8 @@
+docker build -t firemanm/go-lab001:latest .
+docker login
+// docker tag firemanm/go-lab001:latest
+docker push firemanm/go-lab001:latest
+
 kubectl apply -f k8s-dp.yaml
 kubectl get pod -o wide
 kubectl get pod  --show-labels
