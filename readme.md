@@ -1,6 +1,8 @@
 docker build -t firemanm/go-lab001:latest .
-docker login
+docker  login https://docker.io/firemanm --username firemanm
+
 // docker tag firemanm/go-lab001:latest
+
 docker push firemanm/go-lab001:latest
 
 git config --global user.name "firemanm-CO9VM"
